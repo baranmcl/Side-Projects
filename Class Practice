@@ -1,0 +1,67 @@
+class Team(object):
+    def __init__(self, name, playerList, wins, losses):
+        self.name = name
+        self.playerList = playerList
+        self.wins = wins
+        self.losses = losses
+    
+    def __repr__(self):
+        return str(self.name)
+    
+    def isValidTeam(self):
+        playerAmount = len(self.playerList)
+        return (9 <= playerAmount) and (playerAmount <= 25)
+    
+    def displayStats(self):
+        return "The %s have won %s games and lost %s games." %(self.name, self.wins, self.losses)
+        
+    def roster(self):
+        return "The %s have %s on their roster." %(self.name, self.playerList)
+
+class Player(object):
+    def __init__(self, name, homerCount, position, OBP):
+        self.name = name
+        self.homerCount = homerCount
+        self.position = position
+        self.OBP = OBP
+    
+    def __repr__(self):
+        return str(self.name)
+    
+    def displayStats(self):
+        return "%s plays %s, with a %s OBP. He's hit %s home runs." %(self.name, self.position, self.OBP, self.homerCount)
+
+def moreHomers(team1, team2):
+    team1Total = 0
+    for i in team1.playerList:
+        team1Total += i.homerCount
+    team2Total = 0
+    for i in team2.playerList:
+        team2Total += i.homerCount
+    if team1Total > team2Total:
+        return team1
+    elif team2Total > team1Total:
+        return team2
+    else:
+        return "They've hit the same amount of home runs!"
+
+
+
+
+baran = Player("Baran", 50, "Catcher", .300)
+karnik = Player("Karnik", 2, "Left Field", .205)
+longo = Player("Longoria", 100, "Third Base", .100)
+archer = Player("Archer", 0, "Pitcher", .005)
+price = Player("Price", 1, "Pitcher", .010)
+cabrera = Player("Cabrera", 15, "Shortstop", .250)
+zobrist = Player("Zobrist", 11, "Utilityman", .350)
+maddon = Player("Maddon", 0, "Manager", .000)
+cash = Player("Cash", 4, "Backup Catcher", .040)
+poop = Player("Poop", 20, "Who Cares", .743)
+list1 = [baran, longo, archer, price, cabrera, zobrist, maddon, cash, poop]
+list2 = [karnik, longo, archer, price, cabrera, zobrist, maddon, cash, poop]
+Rays = Team("Rays", list1, 4, 158)
+Orioles = Team("Orioles", list2, 158, 4)
+print Rays.roster()
+print baran.displayStats()
+print moreHomers(Orioles, Rays)

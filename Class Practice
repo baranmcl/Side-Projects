@@ -1,9 +1,9 @@
 class Team(object):
-    def __init__(self, name, playerList, wins, losses):
+    def __init__(self, name, wins, losses, playerList=[]): #made playerList default to empty list
         self.name = name
-        self.playerList = playerList
         self.wins = wins
         self.losses = losses
+        self.playerList = playerList
     
     def __repr__(self):
         return str(self.name)
@@ -17,6 +17,9 @@ class Team(object):
         
     def roster(self):
         return "The %s have %s on their roster." %(self.name, self.playerList)
+        
+    def addPlayer(self, player): #added addPlayer function
+        self.playerList.append(player)
 
 class Player(object):
     def __init__(self, name, homerCount, position, OBP):
@@ -39,14 +42,14 @@ def moreHomers(team1, team2):
     for i in team2.playerList:
         team2Total += i.homerCount
     if team1Total > team2Total:
-        return team1
+        return "The %s have hit more home runs!" %(team1)
     elif team2Total > team1Total:
-        return team2
+        return "The %s have hit more home runs!" %(team2)
     else:
         return "They've hit the same amount of home runs!"
 
 
-
+##### Testing Area #####
 
 baran = Player("Baran", 50, "Catcher", .300)
 karnik = Player("Karnik", 2, "Left Field", .205)
@@ -60,8 +63,10 @@ cash = Player("Cash", 4, "Backup Catcher", .040)
 poop = Player("Poop", 20, "Who Cares", .743)
 list1 = [baran, longo, archer, price, cabrera, zobrist, maddon, cash, poop]
 list2 = [karnik, longo, archer, price, cabrera, zobrist, maddon, cash, poop]
-Rays = Team("Rays", list1, 4, 158)
-Orioles = Team("Orioles", list2, 158, 4)
+Rays = Team("Rays", 4, 158, list1)
+Orioles = Team("Orioles", 158, 4, list2)
 print Rays.roster()
 print baran.displayStats()
 print moreHomers(Orioles, Rays)
+Rays.addPlayer(karnik)
+print Rays.roster()

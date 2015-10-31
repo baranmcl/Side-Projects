@@ -20,6 +20,10 @@ class Team(object):
         
     def addPlayer(self, player): #added addPlayer function
         self.playerList.append(player)
+        
+    def addPlayerList(self, players):
+        for i in players:
+            self.playerList.append(i)
 
 class Player(object):
     def __init__(self, name, homerCount, position, OBP):

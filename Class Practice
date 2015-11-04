@@ -26,17 +26,17 @@ class Team(object):
             self.playerList.append(i)
 
 class Player(object):
-    def __init__(self, name, homerCount, position, OBP):
+    def __init__(self, name, homerCount, position, onBasePercentage):
         self.name = name
         self.homerCount = homerCount
         self.position = position
-        self.OBP = OBP
+        self.onBasePercentage = onBasePercentage
     
     def __repr__(self):
         return str(self.name)
     
     def displayStats(self):
-        return "%s plays %s, with a %s OBP. He's hit %s home runs." %(self.name, self.position, self.OBP, self.homerCount)
+        return "%s plays %s, with a %s OBP. He's hit %s home runs." %(self.name, self.position, self.onBasePercentage, self.homerCount)
 
 def moreHomers(team1, team2):
     team1Total = 0
